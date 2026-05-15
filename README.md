@@ -1,36 +1,126 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# LuxHotel — Site de réservation hôtelière
 
-## Getting Started
+Application web de réservation d'hôtels construite avec Next.js 16, Prisma 7, SQLite et TailwindCSS v4.
 
-First, run the development server:
+## Stack technique
+
+| Technologie | Version | Rôle |
+|---|---|---|
+| Next.js | 16.2.6 | Framework (App Router) |
+| React | 19 | UI |
+| Prisma | 7.8 | ORM |
+| SQLite + `better-sqlite3` | — | Base de données locale |
+| TailwindCSS | v4 | Styles |
+| `jose` | v6 | Auth JWT (sessions httpOnly) |
+| `bcryptjs` | v3 | Hachage des mots de passe |
+| `zod` | v4 | Validation des formulaires |
+
+---
+
+## Lancer le projet
+
+### 1. Installer les dépendances
+
+```bash
+npm install
+```
+
+### 2. Configurer les variables d'environnement
+
+Le fichier `.env` est déjà présent à la racine avec les valeurs par défaut :
+
+```env
+DATABASE_URL="file:./dev.db"
+JWT_SECRET="hotel-reservation-super-secret-jwt-key-2024"
+```
+
+### 3. Migrer la base de données
+
+```bash
+npx prisma migrate dev
+```
+
+### 4. Insérer les données de démonstration
+
+```bash
+npx prisma db seed
+```
+
+### 5. Lancer le serveur de développement
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+L'application est disponible sur **http://localhost:3000**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Comptes de démonstration
 
-## Learn More
+> Ces comptes sont créés automatiquement par le seed.
 
-To learn more about Next.js, take a look at the following resources:
+### Administrateur
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Champ | Valeur |
+|---|---|
+| Email | `admin@luxhotel.fr` |
+| Mot de passe | `admin123` |
+| Accès | Panneau admin complet (`/admin`) |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Utilisateur standard
 
-## Deploy on Vercel
+| Champ | Valeur |
+|---|---|
+| Email | `sophie@email.fr` |
+| Mot de passe | `user1234` |
+| Accès | Réservations, profil |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Structure des pages
+
+```
+/                        → Accueil (hôtels en vedette)
+/hotels                  → Liste des hôtels avec filtres
+/hotels/[id]             → Détail hôtel + chambres disponibles
+/reservations/new        → Formulaire de réservation (calcul prix temps réel)
+/reservations            → Mes réservations (annulation possible)
+/auth/login              → Connexion
+/auth/register           → Inscription
+/admin                   → Dashboard admin (stats)
+/admin/hotels            → Gestion des hôtels (CRUD)
+/admin/rooms             → Gestion des chambres (CRUD)
+/admin/reservations      → Toutes les réservations (confirmation/annulation)
+```
+
+## Données de démonstration
+
+Le seed crée **3 hôtels** avec **8 chambres** au total :
+
+| Hôtel | Ville | Chambres | Prix |
+|---|---|---|---|
+| Le Grand Palais | Paris | 3 | 280€ – 650€ / nuit |
+| Riviera Palace | Nice | 2 | 220€ – 580€ / nuit |
+| Hôtel des Lumières | Lyon | 3 | 150€ – 490€ / nuit |
+
+---
+
+## Commandes utiles
+
+```bash
+# Lancer en développement
+npm run dev
+
+# Build de production
+npm run build
+
+# Réinitialiser et re-seeder la base
+npx prisma migrate reset
+
+# Ouvrir Prisma Studio (interface visuelle DB)
+npx prisma studio
+
+# Vérifier les types TypeScript
+npx tsc --noEmit
+```

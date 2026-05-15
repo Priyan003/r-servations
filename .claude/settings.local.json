@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Test-Path *)",
+      "Bash(Get-ChildItem *)",
+      "PowerShell(Head *)",
+      "Skill(superpowers:writing-plans)",
+      "Bash(Get-Content \"C:\\\\Users\\\\isai_studio\\\\.claude\\\\projects\\\\D--Workspace-reservation\\\\17b3f1d5-61c3-4f9f-aefc-54419163b9c6\\\\tool-results\\\\toolu_01UEccDH74GBuCfDBBVq1Z9T.json\" -TotalCount 500)",
+      "Bash(Out-String)",
+      "PowerShell(New-Item *)",
+      "PowerShell(Start-Sleep -Seconds 5; Invoke-WebRequest -Uri \"http://localhost:3000\" -UseBasicParsing -TimeoutSec 10 | Select-Object StatusCode)",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(curl -s \"http://localhost:3000/admin\" -w \"\\\\nHTTP: %{http_code}\" -o /dev/null)",
+      "Bash(curl -s \"http://localhost:3000/reservations\" -w \"\\\\nHTTP: %{http_code}\" -o /dev/null)",
+      "Bash(curl *)",
+      "Bash(npx tsc *)",
+      "Bash(npm install *)",
+      "Bash(npm list *)",
+      "Skill(superpowers:executing-plans)"
+    ]
+  }
+}
