@@ -20,7 +20,8 @@
       "Skill(superpowers:executing-plans)",
       "Bash(Select-Object -ExpandProperty FullName)",
       "Bash(npm uninstall *)",
-      "Bash(Remove-Item *)"
+      "Bash(Remove-Item *)",
+      "Bash(npx prisma *)"
     ]
   }
 }
