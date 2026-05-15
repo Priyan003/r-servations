@@ -1,16 +1,8 @@
 import { PrismaClient } from "@prisma/client";
-import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
 import bcrypt from "bcryptjs";
-import path from "path";
 import "dotenv/config";
 
-const dbUrl = process.env.DATABASE_URL ?? "file:./dev.db";
-const dbPath = dbUrl.replace(/^file:/, "");
-const resolvedPath = path.isAbsolute(dbPath)
-  ? dbPath
-  : path.resolve(process.cwd(), dbPath);
-const adapter = new PrismaBetterSqlite3({ url: resolvedPath });
-const prisma = new PrismaClient({ adapter });
+const prisma = new PrismaClient();
 
 async function main() {
   console.log("🌱 Seeding database...");

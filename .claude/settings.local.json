@@ -17,7 +17,10 @@
       "Bash(npx tsc *)",
       "Bash(npm install *)",
       "Bash(npm list *)",
-      "Skill(superpowers:executing-plans)"
+      "Skill(superpowers:executing-plans)",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(npm uninstall *)",
+      "Bash(Remove-Item *)"
     ]
   }
 }
